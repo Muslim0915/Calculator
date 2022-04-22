@@ -1,0 +1,47 @@
+*{
+  box-sizing: border-box;
+  font-size: 18px;
+  font-weight: 900;
+
+}
+body{
+  background-color: #08072b;
+}
+.grid-container {
+  max-width: 500px;
+  margin: 100px auto;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  gap: 15px;
+  text-align: center;
+}
+.button{
+  height: 75px;
+
+  background: #fff;
+}
+.backspace, .plus-minus, .sqrt{
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.backspace{
+  background-image: url("../images/arrow.png");
+}
+.viewer{
+  grid-column: 1/ span 5;
+  background: #f6f6f6;
+  text-align: right;
+  padding: 10px;
+  width: 100%;
+}
+
+.equal{
+  grid-column: 5;
+  grid-row: 5 / span 2;
+  height: 165px;
+}
+.zero{
+  grid-column: 1 / span 2;
+  grid-row: 6 / span 2;
+}
