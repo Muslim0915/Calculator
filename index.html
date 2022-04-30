@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang = "en">
 <head>
     <meta charset = "UTF-8">
@@ -9,38 +9,45 @@
     <title>Document</title>
 </head>
 <body>
-<div class="wrapper">
-    <div class="container">
-        <div class="calculator" id="calculator">
-            <div class="grid-container buttons">
-                <div class="viewer">0</div>
-                <button class = "button">&larr;</button>
-                <button class = "button">CE</button>
-                <button class = "button">C</button>
-                <button class = "button"> &#8723;</button>
-                <button class = "button">&radic;</button>
-                <button class = "button">7</button>
-                <button class = "button">8</button>
-                <button class = "button">9</button>
-                <button class = "button">&divide;</button>
-                <button class = "button">%</button>
-                <button class = "button">4</button>
-                <button class = "button">5</button>
-                <button class = "button">6</button>
-                <button class = "button">*</button>
-                <button class = "button">1/x</button>
-                <button class = "button">1</button>
-                <button class = "button">2</button>
-                <button class = "button">3</button>
-                <button class = "button">&minus;</button>
-                <button class = "button equal">&equals;</button>
-                <button class = "button zero">0</button>
-                <button class = "button">.</button>
-                <button class = "button">&plus;</button>
+        <div class="container">
+            <div class="calculator">
+                <div class="input" id="input"></div>
+                <div class="buttons">
+                    <div class="operators">
+                        <div>+</div>
+                        <div>-</div>
+                        <div>&times;</div>
+                        <div>&divide;</div>
+                    </div>
+                    <div class="leftPanel">
+                        <div class="numbers">
+                            <div>7</div>
+                            <div>8</div>
+                            <div>9</div>
+                            <button class="delete"></button>
+                        </div>
+                        <div class="numbers">
+                            <div>4</div>
+                            <div>5</div>
+                            <div>6</div>
+                        </div>
+                        <div class="numbers">
+                            <div>1</div>
+                            <div>2</div>
+                            <div>3</div>
+                        </div>
+                        <div class="numbers">
+                            <div>0</div>
+                            <div id="decimal">.</div>
+                            <div id="clear">C</div>
+                            <div class="equal" id="result">=</div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
-</div>
+
 <script src = "js/index.js"></script>
 </body>
 </html>
