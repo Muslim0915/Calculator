@@ -1,108 +1,86 @@
-"use strict";
+const display = document.querySelector('#display');
+const buttons = document.querySelectorAll('.button');
+const history = document.querySelector('#history');
 
-    const input = document.getElementById('input');
-    const number = document.querySelectorAll('.numbers div');
-    const operator = document.querySelectorAll('.operators div');
-    const result = document.getElementById('result');
-    const clear = document.getElementById('clear');
-    const deleteButton = document.querySelector('.delete');
-
-    let resultDisplayed = false;
-    let newString;
-    let currentString;
-
-for (let i = 0; i < number.length; i++) {
-    number[i].addEventListener("click", function(e) {
-        let currentString = input.innerHTML;
-        let lastChar = currentString[currentString.length - 1];
-
-        if (resultDisplayed === false) {
-            input.innerHTML += e.target.innerHTML;
-        } else if (resultDisplayed === true && lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷") {
-            resultDisplayed = false;
-            input.innerHTML += e.target.innerHTML;
-        } else {
-            resultDisplayed = false;
-            input.innerHTML = "";
-            input.innerHTML += e.target.innerHTML;
-        }
-
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const value = button.getAttribute('data-value');
+        handleButtonPress(value);
     });
-}
-
-for (let i = 0; i < operator.length; i++) {
-    operator[i].addEventListener("click", function(e) {
-
-        currentString = input.innerHTML;
-        let lastChar = currentString[currentString.length - 1];
-
-        if (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷") {
-             newString = currentString.substring(0, currentString.length - 1) + e.target.innerHTML;
-            input.innerHTML = newString;
-        } else if (currentString.length == 0) {
-            console.log("enter a number first");
-        } else {
-            input.innerHTML += e.target.innerHTML;
-        }
-
-    });
-}
-
-result.addEventListener("click", function() {
-
-    let inputString = input.innerHTML;
-
-    let numbers = inputString.split(/\+|\-|\×|\÷/g);
-
-    let operators = inputString.replace(/[0-9]|\./g, "").split("");
-
-    console.log(inputString);
-    console.log(operators);
-    console.log(numbers);
-    console.log("----------------------------");
-
-
-    let divide = operators.indexOf("÷");
-    while (divide != -1) {
-        numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
-        operators.splice(divide, 1);
-        divide = operators.indexOf("÷");
-    }
-
-    let multiply = operators.indexOf("×");
-    while (multiply != -1) {
-        numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
-        operators.splice(multiply, 1);
-        multiply = operators.indexOf("×");
-    }
-
-    let subtract = operators.indexOf("-");
-    while (subtract != -1) {
-        numbers.splice(subtract, 2, numbers[subtract] - numbers[subtract + 1]);
-        operators.splice(subtract, 1);
-        subtract = operators.indexOf("-");
-    }
-
-    let add = operators.indexOf("+");
-    while (add != -1) {
-        numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
-        operators.splice(add, 1);
-        add = operators.indexOf("+");
-    }
-
-    input.innerHTML = numbers[0];
-
-    resultDisplayed = true;
 });
 
-clear.addEventListener("click", function() {
-    input.innerHTML = "";
-});
-deleteButton.addEventListener('click', function (e) {
-    if (input.innerText.length !== 0) {
-        input.innerHTML = input.innerHTML.slice(0, -1);
-        document.querySelector('[name="decimal"]').disabled = false;
+function handleButtonPress(value) {
+    if (value === 'C') {
+        clearLastCharacter();
+    } else if (value === 'CE') {
+        clearDisplay();
+    } else if (value === '=') {
+        evaluateExpression();
     } else {
+        appendValue(value);
+    }
+}
+
+function clearLastCharacter() {
+    display.value = display.value.slice(0, -1);
+}
+
+function clearDisplay() {
+    display.value = '';
+    history.innerText = '';
+}
+
+function evaluateExpression() {
+    try {
+        const expression = display.value;
+        display.value = eval(expression);
+        history.innerText = expression;
+    } catch (error) {
+        display.value = 'Ошибка';
+        history.innerText = '';
+    }
+}
+
+function appendValue(value) {
+   if (isOperator(value)) {
+      if (!isLastCharOperator(display.value)) {
+         if (/\d/.test(display.value.slice(-1))) {
+            evaluateExpression();
+         }
+         display.value += value;
+      }
+   } else {
+      display.value += value;
+   }
+}
+function clearFirstCharacter() {
+    display.value = display.value.slice(1);
+
+}
+function isOperator(value) {
+    return value === '+' || value === '-' || value === '*' || value === '/';
+}
+
+function isLastCharOperator(value) {
+    const lastChar = value.charAt(value.length - 1);
+    return isOperator(lastChar);
+}
+
+document.addEventListener('keydown', (event) => {
+    const key = event.key;
+    const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', '.', 'Enter',];
+    if (allowedKeys.includes(key)) {
+        event.preventDefault();
+        const value = key === 'Enter' ? '=' : key;
+        handleButtonPress(value);
+    }
+    if (event.key === 'Escape') {
+        clearDisplay();
+    }
+    if (event.key === 'Delete') {
+       clearFirstCharacter();
+    }
+    if (event.key === 'Backspace') {
+        clearLastCharacter();
     }
 });
-

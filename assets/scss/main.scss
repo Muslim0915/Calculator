@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+}
+
+.wrapper {
+  max-width: 1366px;
+  margin: 0 auto;
+  height: 100vh;
+  border-radius: 15px;
+  background: linear-gradient(180deg, #807ECE 0%, #8E7ECE 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  width: 356px;
+  height: 566px;
+  padding: 54px 32px 32px 32px;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-radius: 48px;
+  background: #2D2A37;
+  box-shadow: 0 -4px 5px 0 rgba(0, 0, 0, 0.22) inset, 0 6px 8px 0 rgba(255, 255, 255, 0.10) inset, 0 8px 17px 0 rgba(0, 0, 0, 0.29), 0 30px 30px 0 rgba(0, 0, 0, 0.26), 0 68px 41px 0 rgba(0, 0, 0, 0.15), 0 120px 48px 0 rgba(0, 0, 0, 0.04), 0 188px 52px 0 rgba(0, 0, 0, 0.01), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.sup-title__text, .text-input {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.text-input {
+  justify-content: space-between;
+  margin: 26px;
+
+  label {
+    width: 20px;
+    height: 20px;
+  }
+
+  input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    text-align: right;
+    color: #EBEBEB;
+    font-family: 'Rubik', sans-serif;
+    font-size: 36px;
+    line-height: 46px;
+    letter-spacing: -0.72px;
+  }
+}
+
+.sup-title__text {
+  color: #6B6B6B;
+  text-align: right;
+  font-family: 'Rubik', sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: -0.4px;
+}
+
+.calculator__buttons__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%), #2D2A37;
+      box-shadow: 0 2px 3px 0 rgba(255, 255, 255, 0.06) inset, 0 0 2px 0 rgba(0, 0, 0, 0.29), 0 2px 4px 0 rgba(0, 0, 0, 0.26), 0 4px 6px 0 rgba(0, 0, 0, 0.10), 0 7px 7px 0 rgba(0, 0, 0, 0.04), 0 11px 7px 0 rgba(0, 0, 0, 0.01);
+      color: #EBEBEB;
+      text-align: center;
+      font-size: 24px;
+      letter-spacing: -0.48px;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      transition: all ease-in-out 0.1s;
+
+      &:active {
+        transform: scale(0.95); /* уменьшение размера кнопки при клике */
+        background-color: #4D4A59; /* изменение цвета фона при клике */
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2); /* добавление тени при клике */
+        color: #FFFFFF; /* изменение цвета текста при клике */
+      }
+    }
+  }
+}
+
+.bg-violet {
+  background: #462878 !important;
+
+  &:active {
+    background-color: #7F45E2 !important;
+  }
+}
+
